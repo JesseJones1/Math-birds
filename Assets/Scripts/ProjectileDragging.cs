@@ -74,15 +74,20 @@ public class ProjectileDragging : MonoBehaviour
 
     void OnMouseDown()
     {
+
+     
+        
         spring.enabled = false;
         clickedOn = true;
     }
 
     void OnMouseUp()
     {
+        
         spring.enabled = true;
         rigidbody2d.isKinematic = false;
         clickedOn = false;
+        SoundManagerScript.PlaySound("ascend");
     }
 
     void Dragging()
@@ -105,5 +110,10 @@ public class ProjectileDragging : MonoBehaviour
         Vector3 holdPoint = leftCatapultToProjectile.GetPoint(catapultToProjectile.magnitude + circleRadius);
         catapultLineFront.SetPosition(1, holdPoint);
         catapultLineBack.SetPosition(1, holdPoint);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        SoundManagerScript.PlaySound("impact");
     }
 }

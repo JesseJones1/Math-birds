@@ -27,9 +27,9 @@ public class damage : MonoBehaviour {
 
         if (collision.collider.tag == "Damager")
         {
-
+            SoundManagerScript.PlaySound("woodfallfx");
             if (collision.collider.transform.GetChild(0).gameObject.name != "3_sprite") {
-               
+                SoundManagerScript.PlaySound("lose");
                 //this.gameObject.GetComponent<Rigidbody2D>().mass = 100;
                 GameObject[] _list = GameObject.FindGameObjectsWithTag("Plank");
                 for (int i = 0; i < _list.Length; i++)
@@ -37,7 +37,7 @@ public class damage : MonoBehaviour {
                     _list[i].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
                 }
                 
-            } ;
+            }else SoundManagerScript.PlaySound("win") ;
         }
 
 
